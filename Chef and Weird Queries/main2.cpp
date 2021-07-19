@@ -11,7 +11,7 @@ int Exponent(int base, int power){
 
 int BinarySearchHelper(int n, int left, int right){
     if(left == right-1){
-        if(rigth*right <= n){
+        if(right*right <= n){
             return right;
         }else if(left*left == n){
             return left;
@@ -19,11 +19,13 @@ int BinarySearchHelper(int n, int left, int right){
             return left-1;
         }
     }else{
-        int middle = (right-left)/2;
-        if(middle*middle > n){
+        int middle = (right+left)/2;
+        if(middle*middle == n){
+            return middle;
+        }else if(middle*middle > n){
             return BinarySearchHelper(n, left, middle-1);
         }else{
-            return BinarySearchHelper(n, middle, right);
+            return BinarySearchHelper(n, middle+1, right);
         }   
     }
 }
@@ -31,12 +33,7 @@ int BinarySearchHelper(int n, int left, int right){
 int BinarySearch(int n, int leftPower, int rightPower){
     int left = Exponent(2, leftPower);
     int right = Exponent(2, rightPower);
-    int middle = (right-left)/2;
-    if(middle*middle > n){
-        return BinarySearchHelper(n, left, middle-1);
-    }else{
-        return BinarySearchHelper(n, middle, right);
-    }
+    return BinarySearchHelper(n, left, right);
 }
 
 int CheckQueryHelper(int n){
