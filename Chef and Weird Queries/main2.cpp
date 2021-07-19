@@ -11,7 +11,7 @@ int Exponent(int base, int power){
 
 int BinarySearchHelper(int n, int left, int right){
     if(left == right-1){
-        if(rigth*right <= n){
+        if(right*right <= n){
             return right;
         }else if(left*left == n){
             return left;
